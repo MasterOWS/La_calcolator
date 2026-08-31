@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,47 +13,77 @@
 
     <div class="calculator">
 
-        <div class="display">
+        <div class="display" id="display">
             0
         </div>
 
         <div class="buttons">
 
-            <!-- Row 1 -->
-            <button>CE</button>
-            <button>C</button>
-            <button>Delete</button>
+            <button id="ce">CE</button>
+            <button id="clear">C</button>
+            <button id="delete">Delete</button>
             <button class="operator">/</button>
 
-            <!-- Row 2 -->
             <button>7</button>
             <button>8</button>
             <button>9</button>
             <button class="operator">*</button>
 
-            <!-- Row 3 -->
             <button>4</button>
             <button>5</button>
             <button>6</button>
             <button class="operator">-</button>
 
-            <!-- Row 4 -->
             <button>1</button>
             <button>2</button>
             <button>3</button>
             <button class="operator">+</button>
 
-            <!-- Row 5 -->
-            <button>+/-</button>
+            <button id="plusminus">+/-</button>
             <button>0</button>
             <button>.</button>
-            <button class="equals">=</button>
+            <button class="equals" id="equals">=</button>
 
         </div>
 
     </div>
 
+
+    <!-- Upgrade Popup -->
+
+    <div class="popup-overlay" id="upgradePopup">
+
+        <div class="popup">
+
+            <button class="close" id="closePopup">&times;</button>
+
+            <h2>Upgrade Your Plan</h2>
+
+            <p>
+                Calculating results is available with an upgraded plan.
+            </p>
+
+            <div class="plans">
+
+                <button class="plan basic">
+                    <h3>Basic</h3>
+                    <span>Basic Calculator</span>
+                </button>
+
+                <button class="plan premium">
+                    <h3>Premium</h3>
+                    <span>Advanced Calculator</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>
-
-
+```
