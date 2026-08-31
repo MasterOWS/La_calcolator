@@ -1,5 +1,7 @@
 ```css
-/* Page */
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -10,6 +12,7 @@ body {
     align-items: center;
 
     background: linear-gradient(135deg, #1e1e2f, #302b63);
+
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -17,34 +20,32 @@ body {
 /* Calculator */
 
 .calculator {
-    width: 340px;
+    width: 360px;
     padding: 20px;
 
-    background-color: #18181f;
+    background: #18181f;
 
     border-radius: 20px;
 
     box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        0 20px 50px rgba(0, 0, 0, 0.45);
 }
 
 
 /* Display */
 
 .display {
+    width: 100%;
     height: 80px;
 
     margin-bottom: 20px;
     padding: 10px 15px;
 
-    box-sizing: border-box;
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
-    background-color: #0d0d12;
+    background: #0d0d12;
     color: white;
 
     border-radius: 12px;
@@ -56,7 +57,7 @@ body {
 }
 
 
-/* Button Grid */
+/* Buttons */
 
 .buttons {
     display: grid;
@@ -66,41 +67,28 @@ body {
     gap: 10px;
 }
 
-
-/* Buttons */
-
 button {
     height: 65px;
 
     border: none;
     border-radius: 12px;
 
-    background-color: #2c2c36;
+    background: #2c2c36;
     color: white;
 
-    font-size: 22px;
+    font-size: 21px;
     font-weight: bold;
 
     cursor: pointer;
 
-    transition:
-        background-color 0.15s,
-        transform 0.1s,
-        box-shadow 0.15s;
+    transition: 0.15s;
 }
-
-
-/* Hover */
 
 button:hover {
-    background-color: #3a3a46;
+    background: #3c3c48;
 
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
-
-
-/* Pressed */
 
 button:active {
     transform: scale(0.95);
@@ -110,36 +98,208 @@ button:active {
 /* Operators */
 
 .operator {
-    background-color: #ff9500;
+    background: #ff9500;
 }
 
 .operator:hover {
-    background-color: #ffad32;
+    background: #ffad32;
 }
 
 
 /* Equals */
 
 .equals {
-    background-color: #4a90e2;
+    background: #4a90e2;
 }
 
 .equals:hover {
-    background-color: #5da0ee;
+    background: #5da0ee;
 }
 
 
-/* Clear buttons */
+/* CE / C / Delete */
 
-button:nth-child(1),
-button:nth-child(2),
-button:nth-child(3) {
-    background-color: #44444f;
+#ce,
+#clear,
+#delete {
+    background: #454550;
 }
 
-button:nth-child(1):hover,
-button:nth-child(2):hover,
-button:nth-child(3):hover {
-    background-color: #555561;
+#ce:hover,
+#clear:hover,
+#delete:hover {
+    background: #575763;
+}
+
+
+/* Popup Overlay */
+
+.popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 1000;
+}
+
+
+/* Popup */
+
+.popup {
+    position: relative;
+
+    width: 420px;
+    max-width: 90%;
+
+    padding: 30px;
+
+    background: #202027;
+
+    border-radius: 18px;
+
+    color: white;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6);
+
+    animation: popupOpen 0.2s ease-out;
+}
+
+
+/* Popup animation */
+
+@keyframes popupOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Popup title */
+
+.popup h2 {
+    margin-top: 0;
+
+    font-size: 28px;
+}
+
+.popup p {
+    color: #bbbbc5;
+
+    margin-bottom: 25px;
+}
+
+
+/* Close button */
+
+.close {
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    width: 35px;
+    height: 35px;
+
+    background: transparent;
+
+    color: #aaa;
+
+    font-size: 28px;
+
+    padding: 0;
+}
+
+.close:hover {
+    background: #33333d;
+
+    color: white;
+
+    transform: none;
+}
+
+
+/* Plans */
+
+.plans {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* Plan buttons */
+
+.plan {
+    height: 130px;
+
+    padding: 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border: 2px solid #444;
+
+    background: #2c2c36;
+}
+
+.plan h3 {
+    margin: 0 0 8px;
+
+    font-size: 22px;
+}
+
+.plan span {
+    font-size: 14px;
+
+    color: #aaa;
+}
+
+.plan:hover {
+    transform: translateY(-3px);
+}
+
+
+/* Basic */
+
+.basic:hover {
+    border-color: #4a90e2;
+
+    background: #30303b;
+}
+
+
+/* Premium */
+
+.premium {
+    border-color: #ff9500;
+}
+
+.premium:hover {
+    background: #38302a;
 }
 ```
