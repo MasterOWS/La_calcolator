@@ -6,29 +6,23 @@
 html,
 body {
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     margin: 0;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #17172a, #302b63);
-}
 
-
-/* =========================
-   CALCULATOR PAGE
-   ========================= */
-
-.page {
-    width: 100%;
-    min-height: 100vh;
-
+    /* Makes the calculator ALWAYS center */
     display: flex;
     justify-content: center;
     align-items: center;
 
-    padding: 30px;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at top, #403878, transparent 50%),
+        linear-gradient(135deg, #141421, #29264d);
 }
 
 
@@ -38,16 +32,18 @@ body {
 
 .calculator {
     width: 360px;
-    max-width: 100%;
+    max-width: calc(100vw - 30px);
 
     padding: 20px;
 
-    background: #18181f;
+    background: #19191f;
+
+    border: 1px solid #3b3b46;
 
     border-radius: 22px;
 
     box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.5);
+        0 25px 70px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -64,10 +60,13 @@ body {
     align-items: center;
     justify-content: flex-end;
 
-    background: #09090d;
-    color: white;
+    background: #08080c;
+
+    border: 1px solid #303039;
 
     border-radius: 14px;
+
+    color: white;
 
     font-size: 38px;
     font-weight: bold;
@@ -77,7 +76,7 @@ body {
 }
 
 
-/* Buttons */
+/* Button grid */
 
 .buttons {
     display: grid;
@@ -87,6 +86,9 @@ body {
     gap: 10px;
 }
 
+
+/* Buttons */
+
 .buttons button {
     height: 65px;
 
@@ -94,6 +96,7 @@ body {
     border-radius: 13px;
 
     background: #30303a;
+
     color: white;
 
     font-size: 20px;
@@ -102,82 +105,91 @@ body {
     cursor: pointer;
 
     transition:
+        background 0.15s,
         transform 0.1s,
-        background 0.15s;
+        box-shadow 0.15s;
 }
 
+
+/* Hover */
+
 .buttons button:hover {
-    background: #41414d;
+    background: #444450;
+
     transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.3);
 }
+
+
+/* Press */
 
 .buttons button:active {
     transform: scale(0.94);
 }
 
 
-/* Special buttons */
-
-.special {
-    background: #4a4a55 !important;
-}
-
-.special:hover {
-    background: #5a5a66 !important;
-}
-
-
 /* Operators */
 
-.operator {
-    background: #ff9500 !important;
+.buttons .operator {
+    background: #ff9500;
 }
 
-.operator:hover {
-    background: #ffad32 !important;
+.buttons .operator:hover {
+    background: #ffad32;
 }
 
 
 /* Equals */
 
-.equals {
-    background: #4a90e2 !important;
+.buttons .equals {
+    background: #4a90e2;
 }
 
-.equals:hover {
-    background: #5da0ee !important;
+.buttons .equals:hover {
+    background: #5da0ee;
 }
 
 
 /* =========================
-   POPUP
+   SUBSCRIPTION POPUP
    ========================= */
 
 .popup-overlay {
+
+    /* IMPORTANT:
+       This keeps the popup completely invisible
+       when the website first loads. */
+
+    display: none;
+
     position: fixed;
 
     inset: 0;
 
-    display: none;
+    width: 100%;
+    height: 100%;
 
     justify-content: center;
     align-items: center;
 
     padding: 20px;
 
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.78);
 
     z-index: 9999;
 }
 
 
-/* Popup box */
+/* Popup */
 
 .popup {
     position: relative;
 
-    width: 750px;
+    width: 760px;
     max-width: 100%;
+
     max-height: 90vh;
 
     overflow-y: auto;
@@ -191,23 +203,43 @@ body {
     border-radius: 8px;
 
     box-shadow:
-        0 15px 60px rgba(0, 0, 0, 0.7);
+        0 20px 80px rgba(0, 0, 0, 0.8);
 
     text-align: center;
+
+    animation: popupAppear 0.2s ease-out;
 }
 
 
-/* Top warning */
+@keyframes popupAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* Red top banner */
 
 .popup-top {
-    margin: -30px -30px 20px -30px;
 
-    padding: 12px;
+    margin: -30px -30px 20px;
 
-    background: #ff3b30;
+    padding: 13px;
+
+    background: #f52222;
+
     color: white;
 
     font-size: 15px;
+
     font-weight: bold;
 
     letter-spacing: 1px;
@@ -217,6 +249,7 @@ body {
 /* Close */
 
 .close-button {
+
     position: absolute;
 
     top: 45px;
@@ -235,7 +268,7 @@ body {
 
     cursor: pointer;
 
-    z-index: 5;
+    z-index: 2;
 }
 
 .close-button:hover {
@@ -243,74 +276,90 @@ body {
 }
 
 
-/* Popup text */
+/* Heading */
 
 .popup h1 {
-    margin: 10px 40px 8px;
+
+    margin: 10px 30px 5px;
 
     font-size: 30px;
 }
 
 .subtitle {
-    margin-top: 0;
+
+    margin-top: 5px;
 
     color: #666;
 
     font-size: 17px;
 }
 
-.popup-text {
-    max-width: 620px;
+
+/* Discount box */
+
+.discount {
 
     margin: 20px auto;
 
-    line-height: 1.5;
+    padding: 15px;
 
-    color: #555;
-}
-
-
-/* Discount */
-
-.discount {
     display: flex;
 
     flex-direction: column;
 
-    align-items: center;
+    gap: 4px;
 
-    gap: 3px;
-
-    margin: 20px auto;
-    padding: 15px;
+    max-width: 550px;
 
     background: #fff3cd;
 
-    border: 2px dashed #ff9500;
+    border: 3px dashed #ff9500;
 
     border-radius: 6px;
 
     color: #a15c00;
-
-    font-weight: bold;
 }
 
 .discount strong {
-    font-size: 34px;
 
-    color: #e63900;
+    color: #e21c00;
+
+    font-size: 38px;
 }
 
-.discount span {
-    font-size: 13px;
+.discount b {
+
+    color: #e21c00;
+
+    font-size: 18px;
+}
+
+.discount small {
 
     color: #777;
+
+    font-size: 12px;
+}
+
+
+/* Text */
+
+.popup-text {
+
+    max-width: 650px;
+
+    margin: 20px auto;
+
+    color: #555;
+
+    line-height: 1.5;
 }
 
 
 /* Plans */
 
 .plans {
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -321,9 +370,10 @@ body {
 }
 
 
-/* Individual plan */
+/* Plan */
 
 .plan {
+
     position: relative;
 
     padding: 25px 20px;
@@ -332,15 +382,9 @@ body {
 
     border-radius: 8px;
 
-    text-align: left;
-
     background: #fafafa;
-}
 
-.plan h2 {
-    margin: 0 0 10px;
-
-    text-align: center;
+    text-align: left;
 }
 
 
@@ -354,112 +398,123 @@ body {
 /* Premium */
 
 .premium {
+
     border-color: #ff9500;
 
     background: #fffaf2;
 }
 
 
-/* Popular badge */
+/* Badges */
 
-.plan-header {
-    position: relative;
-}
+.popular,
+.best {
 
-.badge {
     display: block;
 
     width: fit-content;
 
-    margin: 0 auto 10px;
+    margin: -10px auto 10px;
 
     padding: 5px 10px;
 
-    background: #4a90e2;
-    color: white;
-
     border-radius: 20px;
 
-    font-size: 11px;
-    font-weight: bold;
-}
-
-
-/* Premium label */
-
-.premium-label {
-    margin: -25px -20px 15px -20px;
-
-    padding: 8px;
-
-    background: #ff9500;
-
     color: white;
 
-    text-align: center;
+    font-size: 10px;
 
-    font-size: 12px;
     font-weight: bold;
 }
 
+.popular {
+    background: #4a90e2;
+}
 
-/* Prices */
+.best {
+    background: #ff9500;
+}
+
+
+/* Plan headings */
+
+.plan h2 {
+
+    margin: 8px 0 15px;
+
+    text-align: center;
+
+    font-size: 25px;
+}
+
+
+/* Price */
 
 .price {
+
     text-align: center;
 }
 
-.old-price {
+.price del {
+
     display: block;
 
     color: #999;
-
-    text-decoration: line-through;
 
     font-size: 14px;
 }
 
 .price strong {
-    font-size: 38px;
+
+    font-size: 40px;
 
     color: #222;
 }
 
-.price small {
-    color: #666;
+.price span {
+
+    color: #777;
+
+    font-size: 14px;
 }
 
 
 /* Savings */
 
 .save {
-    margin: 5px 0 15px;
-
-    color: #e63900;
-
-    font-size: 12px;
-    font-weight: bold;
 
     text-align: center;
+
+    color: #e21c00;
+
+    font-weight: bold;
+
+    font-size: 12px;
 }
 
 
-/* Features */
+/* Feature list */
 
 .plan ul {
+
     padding: 0;
+
+    margin: 15px 0;
 
     list-style: none;
 
-    line-height: 1.9;
+    color: #555;
 
     font-size: 14px;
+
+    line-height: 1.9;
 }
 
 
 /* Plan buttons */
 
 .plan button {
+
     width: 100%;
 
     height: 50px;
@@ -470,33 +525,57 @@ body {
 
     color: white;
 
-    font-size: 14px;
     font-weight: bold;
 
     cursor: pointer;
+
+    transition: 0.15s;
 }
 
-.choose-basic {
+
+.basic button {
     background: #4a90e2;
 }
 
-.choose-basic:hover {
-    background: #367dcc;
+.basic button:hover {
+    background: #347bc8;
 }
 
-.choose-premium {
+
+.premium button {
     background: #ff7a00;
 }
 
-.choose-premium:hover {
-    background: #e66d00;
+.premium button:hover {
+    background: #df6800;
+}
+
+
+/* Guarantee */
+
+.guarantee {
+
+    margin-top: 20px;
+
+    padding: 10px;
+
+    background: #e9f8ed;
+
+    color: #237a38;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    border-radius: 4px;
 }
 
 
 /* Fine print */
 
 .fine-print {
-    margin: 20px 10px 5px;
+
+    margin: 15px 20px 5px;
 
     color: #999;
 
@@ -505,13 +584,25 @@ body {
     line-height: 1.5;
 }
 
+
+/* Annoying messages */
+
 .annoying-message {
+
     margin: 10px;
 
-    color: #e63900;
+    color: #e21c00;
 
-    font-size: 12px;
+    font-size: 13px;
+
     font-weight: bold;
+}
+
+.tiny-message {
+
+    color: #aaa;
+
+    font-size: 10px;
 }
 
 
@@ -528,11 +619,12 @@ body {
     }
 
     .popup-top {
-        margin: -20px -20px 20px -20px;
+        margin: -20px -20px 20px;
     }
 
     .popup h1 {
         font-size: 24px;
     }
+
 }
 ```
