@@ -11,72 +11,78 @@
 
 <body>
 
-    <main class="page">
-        <div class="calculator">
+    <!-- CALCULATOR -->
 
-            <div class="display" id="display">0</div>
+    <div class="calculator">
 
-            <div class="buttons">
-                <button class="special" data-value="CE">CE</button>
-                <button class="special" data-value="C">C</button>
-                <button class="special delete" data-value="Delete">Delete</button>
-                <button class="operator" data-value="/">/</button>
+        <div class="display" id="display">0</div>
 
-                <button data-value="7">7</button>
-                <button data-value="8">8</button>
-                <button data-value="9">9</button>
-                <button class="operator" data-value="*">*</button>
+        <div class="buttons">
 
-                <button data-value="4">4</button>
-                <button data-value="5">5</button>
-                <button data-value="6">6</button>
-                <button class="operator" data-value="-">-</button>
+            <button onclick="clearEntry()">CE</button>
+            <button onclick="clearCalculator()">C</button>
+            <button onclick="deleteLast()">Delete</button>
+            <button class="operator" onclick="addOperator('/')">/</button>
 
-                <button data-value="1">1</button>
-                <button data-value="2">2</button>
-                <button data-value="3">3</button>
-                <button class="operator" data-value="+">+</button>
+            <button onclick="addNumber('7')">7</button>
+            <button onclick="addNumber('8')">8</button>
+            <button onclick="addNumber('9')">9</button>
+            <button class="operator" onclick="addOperator('*')">*</button>
 
-                <button data-value="+/-">+/-</button>
-                <button data-value="0">0</button>
-                <button data-value=".">.</button>
-                <button class="equals" id="equals">=</button>
-            </div>
+            <button onclick="addNumber('4')">4</button>
+            <button onclick="addNumber('5')">5</button>
+            <button onclick="addNumber('6')">6</button>
+            <button class="operator" onclick="addOperator('-')">-</button>
+
+            <button onclick="addNumber('1')">1</button>
+            <button onclick="addNumber('2')">2</button>
+            <button onclick="addNumber('3')">3</button>
+            <button class="operator" onclick="addOperator('+')">+</button>
+
+            <button onclick="toggleSign()">+/-</button>
+            <button onclick="addNumber('0')">0</button>
+            <button onclick="addDecimal()">.</button>
+            <button class="equals" onclick="showUpgrade()">=</button>
 
         </div>
-    </main>
+
+    </div>
 
 
     <!-- SUBSCRIPTION POPUP -->
-    <!-- Hidden when the page loads -->
 
     <div class="popup-overlay" id="subscriptionPopup">
 
         <div class="popup">
 
-            <button class="close-button" id="closePopup">×</button>
+            <button class="close-button" onclick="closeUpgrade()">×</button>
 
             <div class="popup-top">
-                ⚠️ SPECIAL OFFER ⚠️
+                ⚠️ WAIT! SPECIAL OFFER ⚠️
             </div>
 
-            <h1>Wait! Your calculation is ready!</h1>
+            <h1>🎉 Don't Miss Out!</h1>
 
             <p class="subtitle">
-                Don't leave before unlocking your calculator results.
+                Your calculation is ready!
             </p>
 
             <div class="discount">
-                🔥 LIMITED TIME OFFER 🔥
+
+                <span>🔥 LIMITED TIME OFFER 🔥</span>
+
                 <strong>87% OFF</strong>
-                <span>Offer expires in 09:59</span>
+
+                <b>ONLY $1.99 TODAY!</b>
+
+                <small>⏰ Offer expires in 09:59</small>
+
             </div>
 
             <p class="popup-text">
-                You've reached the free calculation limit.
-                Upgrade your account to continue calculating numbers,
-                unlock advanced features, and get the most out of
-                SuperCalc™.
+                You've discovered a premium feature! Upgrade your
+                SuperCalc™ plan today to unlock your calculation
+                results and get access to dozens of amazing features.
             </p>
 
             <div class="plans">
@@ -85,30 +91,30 @@
 
                 <div class="plan basic">
 
-                    <div class="plan-header">
-                        <h2>Basic</h2>
-                        <span class="badge">MOST POPULAR</span>
-                    </div>
+                    <span class="popular">MOST POPULAR</span>
+
+                    <h2>Basic</h2>
 
                     <div class="price">
-                        <span class="old-price">$9.99</span>
+                        <del>$9.99</del>
                         <strong>$1.99</strong>
-                        <small>/ month</small>
+                        <span>/ month</span>
                     </div>
 
                     <p class="save">
-                        SAVE 80% TODAY
+                        SAVE 80%!
                     </p>
 
                     <ul>
                         <li>✓ Unlimited calculations</li>
-                        <li>✓ Basic calculator</li>
+                        <li>✓ Standard calculator</li>
                         <li>✓ Calculation history</li>
                         <li>✓ Decimal calculations</li>
-                        <li>✓ Ad-supported</li>
+                        <li>✓ Basic support</li>
+                        <li>✓ Occasional advertisements</li>
                     </ul>
 
-                    <button class="choose-basic">
+                    <button onclick="fakeUpgrade('Basic')">
                         UPGRADE TO BASIC
                     </button>
 
@@ -119,33 +125,33 @@
 
                 <div class="plan premium">
 
-                    <div class="premium-label">
+                    <span class="best">
                         ⭐ BEST VALUE ⭐
-                    </div>
+                    </span>
 
                     <h2>Premium</h2>
 
                     <div class="price">
-                        <span class="old-price">$29.99</span>
+                        <del>$29.99</del>
                         <strong>$4.99</strong>
-                        <small>/ month</small>
+                        <span>/ month</span>
                     </div>
 
                     <p class="save">
-                        SAVE 83% TODAY
+                        SAVE 83%!
                     </p>
 
                     <ul>
                         <li>✓ Everything in Basic</li>
-                        <li>✓ Advanced calculations</li>
-                        <li>✓ Unlimited history</li>
+                        <li>✓ Unlimited calculations</li>
                         <li>✓ Scientific calculator</li>
+                        <li>✓ Unlimited history</li>
                         <li>✓ No advertisements</li>
                         <li>✓ Priority calculations</li>
                         <li>✓ Premium support</li>
                     </ul>
 
-                    <button class="choose-premium">
+                    <button onclick="fakeUpgrade('Premium')">
                         GET PREMIUM NOW
                     </button>
 
@@ -153,14 +159,25 @@
 
             </div>
 
+            <div class="guarantee">
+                🔒 30-DAY MONEY-BACK GUARANTEE
+            </div>
+
             <p class="fine-print">
-                By continuing, you agree to our Terms of Service and
-                Privacy Policy. Subscription automatically renews every
-                month until cancelled. Prices may vary by region.
+                Subscription renews automatically every month.
+                You can cancel at any time. By subscribing, you agree
+                to our Terms of Service, Privacy Policy, Cookie Policy,
+                Billing Agreement and extremely long collection of
+                other documents that you probably won't read.
             </p>
 
             <p class="annoying-message">
-                Don't miss this offer! This discount may never appear again!
+                🚨 THIS OFFER MAY NEVER APPEAR AGAIN! 🚨
+            </p>
+
+            <p class="tiny-message">
+                Seriously, are you sure you want to miss an amazing
+                opportunity to calculate numbers?
             </p>
 
         </div>
@@ -168,7 +185,187 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        let currentInput = "0";
+
+
+        // Update the calculator display
+
+        function updateDisplay() {
+            document.getElementById("display").textContent = currentInput;
+        }
+
+
+        // Add a number
+
+        function addNumber(number) {
+
+            if (currentInput === "0") {
+                currentInput = number;
+            } else {
+                currentInput += number;
+            }
+
+            updateDisplay();
+        }
+
+
+        // Add decimal
+
+        function addDecimal() {
+
+            // Get the current number
+            let parts = currentInput.split(" ");
+            let lastNumber = parts[parts.length - 1];
+
+            // Don't allow multiple decimals
+            if (lastNumber.includes(".")) {
+                return;
+            }
+
+            currentInput += ".";
+
+            updateDisplay();
+        }
+
+
+        // Add an operator
+
+        function addOperator(operator) {
+
+            // Don't add an operator if the display is empty
+            if (currentInput === "") {
+                return;
+            }
+
+            // Don't allow two operators beside each other
+            if (
+                currentInput.endsWith(" + ") ||
+                currentInput.endsWith(" - ") ||
+                currentInput.endsWith(" * ") ||
+                currentInput.endsWith(" / ")
+            ) {
+                return;
+            }
+
+            currentInput += " " + operator + " ";
+
+            updateDisplay();
+        }
+
+
+        // Delete last character
+
+        function deleteLast() {
+
+            if (currentInput.length <= 1) {
+                currentInput = "0";
+            } else {
+                currentInput = currentInput.slice(0, -1);
+            }
+
+            updateDisplay();
+        }
+
+
+        // Clear everything
+
+        function clearCalculator() {
+
+            currentInput = "0";
+
+            updateDisplay();
+        }
+
+
+        // Clear current entry
+
+        function clearEntry() {
+
+            let parts = currentInput.trim().split(" ");
+
+            // If there is an operator, remove the current number
+            if (parts.length > 1) {
+
+                parts.pop();
+                parts.pop();
+
+                currentInput = parts.join(" ");
+
+                if (currentInput === "") {
+                    currentInput = "0";
+                }
+
+            } else {
+
+                currentInput = "0";
+
+            }
+
+            updateDisplay();
+        }
+
+
+        // Change positive/negative
+
+        function toggleSign() {
+
+            let parts = currentInput.split(" ");
+
+            let last = parts[parts.length - 1];
+
+            if (last === "" || isNaN(last)) {
+                return;
+            }
+
+            if (last.startsWith("-")) {
+                parts[parts.length - 1] = last.substring(1);
+            } else {
+                parts[parts.length - 1] = "-" + last;
+            }
+
+            currentInput = parts.join(" ");
+
+            updateDisplay();
+        }
+
+
+        // Show subscription popup
+
+        function showUpgrade() {
+
+            document.getElementById("subscriptionPopup").style.display = "flex";
+
+        }
+
+
+        // Close subscription popup
+
+        function closeUpgrade() {
+
+            document.getElementById("subscriptionPopup").style.display = "none";
+
+        }
+
+
+        // Fake upgrade buttons
+
+        function fakeUpgrade(plan) {
+
+            alert(
+                "Thanks for choosing " +
+                plan +
+                "!\n\n" +
+                "This is only a demonstration. " +
+                "No subscription has actually been purchased."
+            );
+
+        }
+
+    </script>
 
 </body>
 </html>
