@@ -85,13 +85,18 @@
                 results and get access to dozens of amazing features.
             </p>
 
+
+            <!-- PLANS -->
+
             <div class="plans">
 
                 <!-- BASIC -->
 
                 <div class="plan basic">
 
-                    <span class="popular">MOST POPULAR</span>
+                    <span class="popular">
+                        MOST POPULAR
+                    </span>
 
                     <h2>Basic</h2>
 
@@ -114,7 +119,7 @@
                         <li>✓ Occasional advertisements</li>
                     </ul>
 
-                    <button onclick="fakeUpgrade('Basic')">
+                    <button onclick="goToCheckout('Basic')">
                         UPGRADE TO BASIC
                     </button>
 
@@ -151,13 +156,14 @@
                         <li>✓ Premium support</li>
                     </ul>
 
-                    <button onclick="fakeUpgrade('Premium')">
+                    <button onclick="goToCheckout('Premium')">
                         GET PREMIUM NOW
                     </button>
 
                 </div>
 
             </div>
+
 
             <div class="guarantee">
                 🔒 30-DAY MONEY-BACK GUARANTEE
@@ -192,38 +198,43 @@
         let currentInput = "0";
 
 
-        // Update the calculator display
-
         function updateDisplay() {
+
             document.getElementById("display").textContent = currentInput;
+
         }
 
 
-        // Add a number
+        // NUMBER BUTTONS
 
         function addNumber(number) {
 
             if (currentInput === "0") {
+
                 currentInput = number;
+
             } else {
+
                 currentInput += number;
+
             }
 
             updateDisplay();
         }
 
 
-        // Add decimal
+        // DECIMAL BUTTON
 
         function addDecimal() {
 
-            // Get the current number
             let parts = currentInput.split(" ");
+
             let lastNumber = parts[parts.length - 1];
 
-            // Don't allow multiple decimals
             if (lastNumber.includes(".")) {
+
                 return;
+
             }
 
             currentInput += ".";
@@ -232,24 +243,28 @@
         }
 
 
-        // Add an operator
+        // OPERATOR BUTTONS
 
         function addOperator(operator) {
 
-            // Don't add an operator if the display is empty
             if (currentInput === "") {
+
                 return;
+
             }
 
-            // Don't allow two operators beside each other
+
             if (
                 currentInput.endsWith(" + ") ||
                 currentInput.endsWith(" - ") ||
                 currentInput.endsWith(" * ") ||
                 currentInput.endsWith(" / ")
             ) {
+
                 return;
+
             }
+
 
             currentInput += " " + operator + " ";
 
@@ -257,21 +272,25 @@
         }
 
 
-        // Delete last character
+        // DELETE
 
         function deleteLast() {
 
             if (currentInput.length <= 1) {
+
                 currentInput = "0";
+
             } else {
+
                 currentInput = currentInput.slice(0, -1);
+
             }
 
             updateDisplay();
         }
 
 
-        // Clear everything
+        // CLEAR
 
         function clearCalculator() {
 
@@ -281,13 +300,13 @@
         }
 
 
-        // Clear current entry
+        // CLEAR ENTRY
 
         function clearEntry() {
 
             let parts = currentInput.trim().split(" ");
 
-            // If there is an operator, remove the current number
+
             if (parts.length > 1) {
 
                 parts.pop();
@@ -295,8 +314,11 @@
 
                 currentInput = parts.join(" ");
 
+
                 if (currentInput === "") {
+
                     currentInput = "0";
+
                 }
 
             } else {
@@ -305,11 +327,12 @@
 
             }
 
+
             updateDisplay();
         }
 
 
-        // Change positive/negative
+        // PLUS / MINUS
 
         function toggleSign() {
 
@@ -317,15 +340,26 @@
 
             let last = parts[parts.length - 1];
 
+
             if (last === "" || isNaN(last)) {
+
                 return;
+
             }
 
+
             if (last.startsWith("-")) {
-                parts[parts.length - 1] = last.substring(1);
+
+                parts[parts.length - 1] =
+                    last.substring(1);
+
             } else {
-                parts[parts.length - 1] = "-" + last;
+
+                parts[parts.length - 1] =
+                    "-" + last;
+
             }
+
 
             currentInput = parts.join(" ");
 
@@ -333,35 +367,35 @@
         }
 
 
-        // Show subscription popup
+        // EQUALS
 
         function showUpgrade() {
 
-            document.getElementById("subscriptionPopup").style.display = "flex";
+            document.getElementById(
+                "subscriptionPopup"
+            ).style.display = "flex";
 
         }
 
 
-        // Close subscription popup
+        // CLOSE POPUP
 
         function closeUpgrade() {
 
-            document.getElementById("subscriptionPopup").style.display = "none";
+            document.getElementById(
+                "subscriptionPopup"
+            ).style.display = "none";
 
         }
 
 
-        // Fake upgrade buttons
+        // GO TO FAKE CHECKOUT
 
-        function fakeUpgrade(plan) {
+        function goToCheckout(plan) {
 
-            alert(
-                "Thanks for choosing " +
-                plan +
-                "!\n\n" +
-                "This is only a demonstration. " +
-                "No subscription has actually been purchased."
-            );
+            window.location.href =
+                "checkout.html?plan=" +
+                encodeURIComponent(plan);
 
         }
 
