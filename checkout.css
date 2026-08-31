@@ -1,0 +1,396 @@
+```css id="z8m1kv"
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f1f3f6;
+
+    color: #222;
+}
+
+
+/* Main container */
+
+.checkout-container {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    min-height: 100vh;
+
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Header */
+
+header {
+    height: 70px;
+
+    padding: 0 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: #19191f;
+
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+.secure {
+    font-size: 13px;
+
+    color: #aaa;
+}
+
+
+/* Main */
+
+main {
+    padding: 40px;
+}
+
+main > h1 {
+    margin-bottom: 5px;
+
+    font-size: 32px;
+}
+
+.subtitle {
+    margin-top: 0;
+
+    color: #777;
+}
+
+
+/* Sections */
+
+.section {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: #fff;
+}
+
+.section h2 {
+    margin-top: 0;
+
+    font-size: 21px;
+}
+
+
+/* Plan selection */
+
+.plan-selection {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.plan-option {
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+
+    padding: 20px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+.plan-option:hover {
+    border-color: #4a90e2;
+}
+
+.plan-option:has(input:checked) {
+    border-color: #4a90e2;
+
+    background: #f3f8ff;
+}
+
+.premium-option:has(input:checked) {
+    border-color: #ff9500;
+
+    background: #fff8ed;
+}
+
+.plan-option input {
+    width: 20px;
+    height: 20px;
+}
+
+.plan-option div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.plan-option strong {
+    font-size: 18px;
+}
+
+.plan-option span {
+    font-weight: bold;
+}
+
+.plan-option small {
+    color: #777;
+}
+
+
+/* Form */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+.field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #444;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    background: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+
+    border-color: #4a90e2;
+
+    box-shadow:
+        0 0 0 2px rgba(74, 144, 226, 0.15);
+}
+
+textarea {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+
+/* Fake payment warning */
+
+.fake-warning {
+    margin-bottom: 0;
+
+    padding: 12px;
+
+    background: #fff3cd;
+
+    border: 1px solid #ffe08a;
+
+    border-radius: 5px;
+
+    color: #856404;
+
+    font-size: 13px;
+}
+
+
+/* Ridiculous section */
+
+.ridiculous {
+    background: #faf7ff;
+
+    border-color: #d8c8ff;
+}
+
+.section-description {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* Checkboxes */
+
+.checkbox {
+    display: block;
+
+    margin: 15px 0;
+
+    font-size: 14px;
+
+    color: #555;
+
+    cursor: pointer;
+}
+
+.checkbox input {
+    margin-right: 8px;
+}
+
+
+/* Purchase */
+
+.purchase {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: #f5f5f7;
+
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.total {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.total strong {
+    font-size: 26px;
+}
+
+.purchase-button {
+    width: 100%;
+
+    height: 60px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #ff9500;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.purchase-button:hover {
+    background: #e98400;
+}
+
+.purchase p {
+    margin-bottom: 0;
+
+    color: #999;
+
+    font-size: 11px;
+}
+
+
+/* Footer */
+
+footer {
+    padding: 25px;
+
+    text-align: center;
+
+    color: #aaa;
+
+    font-size: 11px;
+
+    border-top: 1px solid #eee;
+}
+
+
+/* Mobile */
+
+@media (max-width: 650px) {
+
+    main {
+        padding: 20px;
+    }
+
+    .plan-selection,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    header {
+        padding: 0 20px;
+    }
+
+    .secure {
+        display: none;
+    }
+
+}
+```
