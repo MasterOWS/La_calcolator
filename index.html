@@ -6,61 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
 
-    <style>
-        body {
-            background-color: #eeeeee;
-            font-family: Arial, sans-serif;
-        }
-
-        .calculator {
-            width: 300px;
-            margin: 50px auto;
-            background-color: #333333;
-            padding: 15px;
-            border: 3px solid #222222;
-        }
-
-        .display {
-            background-color: white;
-            height: 60px;
-            margin-bottom: 15px;
-            border: 2px solid #111111;
-            text-align: right;
-            font-size: 35px;
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-        }
-
-        button {
-            height: 60px;
-            font-size: 24px;
-            background-color: #dddddd;
-            border: 2px solid #999999;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #cccccc;
-        }
-
-        .operator {
-            background-color: #bbbbbb;
-        }
-
-        .clear {
-            background-color: #ff9999;
-        }
-
-        .equals {
-            background-color: #99ccff;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -74,28 +20,34 @@
         <div class="buttons">
 
             <!-- Row 1 -->
-            <button class="clear">C</button>
+            <button>CE</button>
+            <button>C</button>
+            <button>Delete</button>
             <button class="operator">/</button>
-            <button class="operator">*</button>
-            <button class="operator">-</button>
 
             <!-- Row 2 -->
             <button>7</button>
             <button>8</button>
             <button>9</button>
-            <button class="operator">+</button>
+            <button class="operator">*</button>
 
             <!-- Row 3 -->
             <button>4</button>
             <button>5</button>
             <button>6</button>
-            <button class="equals">=</button>
+            <button class="operator">-</button>
 
             <!-- Row 4 -->
             <button>1</button>
             <button>2</button>
             <button>3</button>
+            <button class="operator">+</button>
+
+            <!-- Row 5 -->
+            <button>+/-</button>
             <button>0</button>
+            <button>.</button>
+            <button class="equals">=</button>
 
         </div>
 
