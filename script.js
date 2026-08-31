@@ -1,7 +1,7 @@
 ```javascript
 const display = document.getElementById("display");
 
-const popup = document.getElementById("upgradePopup");
+const popup = document.getElementById("subscriptionPopup");
 const closePopup = document.getElementById("closePopup");
 
 const buttons = document.querySelectorAll(".buttons button");
@@ -9,33 +9,71 @@ const buttons = document.querySelectorAll(".buttons button");
 let currentInput = "0";
 
 
+// Update calculator display
+function updateDisplay() {
+    display.textContent = currentInput;
+}
+
+
+// Handle calculator buttons
 buttons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", function () {
 
-        const value = button.textContent;
+        const value = this.dataset.value;
 
-        // Equals
+
+        // =========================
+        // EQUALS
+        // =========================
+
         if (value === "=") {
             popup.style.display = "flex";
             return;
         }
 
-        // Clear Entry
-        if (value === "CE") {
-            currentInput = "0";
-            display.textContent = currentInput;
-            return;
-        }
 
-        // Clear Everything
+        // =========================
+        // CLEAR EVERYTHING
+        // =========================
+
         if (value === "C") {
             currentInput = "0";
-            display.textContent = currentInput;
+            updateDisplay();
             return;
         }
 
-        // Delete
+
+        // =========================
+        // CLEAR ENTRY
+        // =========================
+
+        if (value === "CE") {
+
+            const parts = currentInput.trim().split(" ");
+
+            if (parts.length > 1) {
+                parts.pop();
+                parts.pop();
+
+                currentInput = parts.join(" ");
+
+                if (currentInput === "") {
+                    currentInput = "0";
+                }
+            } else {
+                currentInput = "0";
+            }
+
+            updateDisplay();
+            return;
+        }
+
+
+        // =========================
+        // DELETE
+        // =========================
+
         if (value === "Delete") {
 
             if (currentInput.length > 1) {
@@ -44,47 +82,75 @@ buttons.forEach(button => {
                 currentInput = "0";
             }
 
-            display.textContent = currentInput;
-
+            updateDisplay();
             return;
         }
 
-        // Plus / Minus
+
+        // =========================
+        // PLUS / MINUS
+        // =========================
+
         if (value === "+/-") {
 
-            if (currentInput !== "0") {
+            const parts = currentInput.split(" ");
+            const lastPart = parts[parts.length - 1];
 
-                if (currentInput.startsWith("-")) {
-                    currentInput = currentInput.substring(1);
+            if (lastPart !== "" && !isNaN(lastPart)) {
+
+                if (lastPart.startsWith("-")) {
+                    parts[parts.length - 1] = lastPart.substring(1);
                 } else {
-                    currentInput = "-" + currentInput;
+                    parts[parts.length - 1] = "-" + lastPart;
                 }
 
+                currentInput = parts.join(" ");
             }
 
-            display.textContent = currentInput;
-
+            updateDisplay();
             return;
         }
 
-        // Numbers and decimal
-        if (
-            !isNaN(value) ||
-            value === "."
-        ) {
 
-            if (currentInput === "0" && value !== ".") {
+        // =========================
+        // NUMBERS
+        // =========================
+
+        if (!isNaN(value)) {
+
+            if (currentInput === "0") {
                 currentInput = value;
             } else {
                 currentInput += value;
             }
 
-            display.textContent = currentInput;
-
+            updateDisplay();
             return;
         }
 
-        // Operators
+
+        // =========================
+        // DECIMAL
+        // =========================
+
+        if (value === ".") {
+
+            const parts = currentInput.split(" ");
+            const lastPart = parts[parts.length - 1];
+
+            if (!lastPart.includes(".")) {
+                currentInput += ".";
+            }
+
+            updateDisplay();
+            return;
+        }
+
+
+        // =========================
+        // OPERATORS
+        // =========================
+
         if (
             value === "+" ||
             value === "-" ||
@@ -92,11 +158,19 @@ buttons.forEach(button => {
             value === "/"
         ) {
 
+            // Don't allow two operators directly after each other
+            if (
+                currentInput.endsWith(" + ") ||
+                currentInput.endsWith(" - ") ||
+                currentInput.endsWith(" * ") ||
+                currentInput.endsWith(" / ")
+            ) {
+                return;
+            }
+
             currentInput += " " + value + " ";
 
-            display.textContent = currentInput;
-
-            return;
+            updateDisplay();
         }
 
     });
@@ -104,16 +178,17 @@ buttons.forEach(button => {
 });
 
 
-/* Close popup */
+// =========================
+// CLOSE POPUP
+// =========================
 
-closePopup.addEventListener("click", () => {
+closePopup.addEventListener("click", function () {
     popup.style.display = "none";
 });
 
 
-/* Close popup when clicking outside it */
-
-popup.addEventListener("click", (event) => {
+// Close if clicking the dark background
+popup.addEventListener("click", function (event) {
 
     if (event.target === popup) {
         popup.style.display = "none";
